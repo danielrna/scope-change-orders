@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to stop scope creep in Jira (a practical guide for agencies)</title>
+<meta name="description" content="A practical way to catch scope creep in Jira: turn every out-of-scope request into a priced, approved change order before the work is absorbed.">
+<link rel="canonical" href="https://danielrna.github.io/scope-change-orders/scope-creep-jira.html">
+<link rel="icon" href="logo.png">
+<meta property="og:type" content="website"><meta property="og:title" content="How to stop scope creep in Jira (a practical guide for agencies)">
+<meta property="og:description" content="A practical way to catch scope creep in Jira: turn every out-of-scope request into a priced, approved change order before the work is absorbed."><meta property="og:url" content="https://danielrna.github.io/scope-change-orders/scope-creep-jira.html">
+<meta property="og:image" content="https://danielrna.github.io/scope-change-orders/logo.png">
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--brand:#1d4ed8;--brand-ink:#fff;--soft:#eef2ff}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--card:#121a2e;--ink:#e5e7eb;--muted:#9aa4b2;--line:#243049;--brand:#6d93ff;--brand-ink:#0b1020;--soft:#17213a}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--brand)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 16px}
+header{display:flex;align-items:center;gap:12px;padding-top:20px;padding-bottom:8px;flex-wrap:wrap}
+header img{width:36px;height:36px;border-radius:8px}
+header .name{font-weight:700;text-decoration:none;color:var(--ink)}
+header nav{margin-left:auto;display:flex;gap:16px;font-size:15px}
+header nav a{color:var(--muted);text-decoration:none}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:32px 0 12px}
+h2{font-size:24px;margin:40px 0 8px}h3{font-size:19px;margin:28px 0 6px}
+.lead{font-size:19px;color:var(--muted)}
+.cta{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:32px 0}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:8px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{counter-increment:s;position:relative;padding-left:44px;margin:14px 0}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--brand);font-weight:700;display:flex;align-items:center;justify-content:center}
+table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+.muted{color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding-top:16px;padding-bottom:32px;font-size:14px;color:var(--muted)}
+footer a{color:var(--muted)}
+img.hero{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you track scope creep in Jira?","acceptedAnswer":{"@type":"Answer","text":"Turn every out-of-scope request into an explicit change request with a cost, a timeline impact and a decision: billable, absorbed or declined. You can do it with a custom issue type and workflow, or with an app such as Scope Change Orders that adds client approval and a revenue dashboard."}},
+{"@type":"Question","name":"Can a client approve a change in Jira without a Jira account?","acceptedAnswer":{"@type":"Answer","text":"Not with Jira alone. Scope Change Orders sends the client a secure approval link that works without an Atlassian account and records the decision on the Jira issue."}}]}</script>
+</head><body>
+<header><img src="logo.png" alt=""><a class="name" href="./">Scope Change Orders</a>
+<nav><a href="scope-creep-jira.html">Scope creep</a><a href="change-order-jira.html">Change orders</a><a href="support.html">Support</a></nav></header>
+<main>
+
+<h1>How to stop scope creep in Jira</h1>
+<p class="lead">Scope creep rarely arrives as a big change. It arrives as a comment on a ticket: "can you also…".
+Here is a practical way to catch it in Jira before it turns into unpaid work.</p>
+
+<h2>Why scope creep is hard to see in Jira</h2>
+<p>Jira is excellent at tracking work. It does not know which work was <em>paid for</em>. When a client
+request is added as a sub-task or slipped into an existing story, the effort is tracked but the
+commercial decision is not. By the time the project closes, nobody remembers that three of those
+tickets were never in the statement of work.</p>
+<p>Agencies feel this directly. In a <a href="https://www.ignitionapp.com/news/2025-agency-pricing-cashflow-report">2025 survey of 273 US agencies by Ignition</a>
+(a billing software company), 57% said they lose $1,000 to $5,000 a month to unbilled work,
+and 30% said they lose more than $5,000.</p>
+
+<h2>A simple rule: every new request gets a decision</h2>
+<p>You do not need to say no to clients. You need every out-of-scope request to end in one of three
+explicit decisions:</p>
+<ul>
+<li><strong>Billable:</strong> the client approves a price and a timeline change.</li>
+<li><strong>Absorbed:</strong> you decide to do it for free, on purpose, and you record it.</li>
+<li><strong>Declined:</strong> it goes to a later phase or a new contract.</li>
+</ul>
+<p>What costs money is the fourth, invisible option: the work gets done and no decision is ever made.</p>
+
+<h2>How to set this up in Jira</h2>
+<h3>Option 1: with Jira alone</h3>
+<ol>
+<li>Create an issue type or label such as <code>change-request</code>.</li>
+<li>Add custom fields for estimated cost and timeline impact.</li>
+<li>Add a workflow with statuses like <em>Awaiting internal approval</em>, <em>Awaiting client</em>, <em>Approved</em>, <em>Rejected</em>.</li>
+<li>Ask the client to approve by email, then attach the email to the issue.</li>
+</ol>
+<p>This works, but it has two weak points: the client approval lives outside Jira (and needs a Jira
+account or an email thread), and nobody sees the total amount recovered or absorbed.</p>
+
+<h3>Option 2: with Scope Change Orders</h3>
+<ol class="steps">
+<li>From the Jira issue where the request appeared, choose <em>Create scope change request</em>. The project and work item are prefilled.</li>
+<li>Enter the budget and timeline impact and the reason.</li>
+<li>A project admin approves internally.</li>
+<li>Send the client a secure link. They approve or reject without an Atlassian account.</li>
+<li>Export a client-ready change order and attach it to your invoice.</li>
+</ol>
+<p>The dashboard then shows recovered, pending and absorbed revenue across projects.</p>
+<div class="cta"><strong>Scope Change Orders for Jira Cloud</strong> is coming to the Atlassian Marketplace, free during beta.<br><a class="btn" href="mailto:team@finalmark.io?subject=Scope%20Change%20Orders%20beta">Ask for early access</a></div>
+<h2>Checklist for your next project kickoff</h2>
+<ul>
+<li>Agree with the client, in writing, that out-of-scope requests go through a change order.</li>
+<li>Name who can approve internally (usually the project lead or account manager).</li>
+<li>Name who signs on the client side.</li>
+<li>Review absorbed work at each milestone, not at the end of the project.</li>
+</ul>
+<p>Related: <a href="change-order-jira.html">How to manage change orders in Jira</a> ·
+<a href="client-approval-jira.html">Client approval without an Atlassian account</a></p>
+
+</main>
+<footer>Scope Change Orders is published by FinalMark, Switzerland · <a href="mailto:team@finalmark.io">team@finalmark.io</a><br>
+<a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a> · <a href="security.html">Security</a><br>
+Jira and Atlassian are trademarks of Atlassian. This app is not made or endorsed by Atlassian.</footer>
+</body></html>

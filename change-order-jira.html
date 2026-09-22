@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to manage change orders in Jira (template and process)</title>
+<meta name="description" content="What a change order should contain and how to draft, approve and get client sign-off on change orders in Jira Cloud.">
+<link rel="canonical" href="https://danielrna.github.io/scope-change-orders/change-order-jira.html">
+<link rel="icon" href="logo.png">
+<meta property="og:type" content="website"><meta property="og:title" content="How to manage change orders in Jira (template and process)">
+<meta property="og:description" content="What a change order should contain and how to draft, approve and get client sign-off on change orders in Jira Cloud."><meta property="og:url" content="https://danielrna.github.io/scope-change-orders/change-order-jira.html">
+<meta property="og:image" content="https://danielrna.github.io/scope-change-orders/logo.png">
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--brand:#1d4ed8;--brand-ink:#fff;--soft:#eef2ff}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--card:#121a2e;--ink:#e5e7eb;--muted:#9aa4b2;--line:#243049;--brand:#6d93ff;--brand-ink:#0b1020;--soft:#17213a}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--brand)}
+header,main,footer{max-width:760px;margin:0 auto;padding:0 16px}
+header{display:flex;align-items:center;gap:12px;padding-top:20px;padding-bottom:8px;flex-wrap:wrap}
+header img{width:36px;height:36px;border-radius:8px}
+header .name{font-weight:700;text-decoration:none;color:var(--ink)}
+header nav{margin-left:auto;display:flex;gap:16px;font-size:15px}
+header nav a{color:var(--muted);text-decoration:none}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:32px 0 12px}
+h2{font-size:24px;margin:40px 0 8px}h3{font-size:19px;margin:28px 0 6px}
+.lead{font-size:19px;color:var(--muted)}
+.cta{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:32px 0}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600;margin-top:8px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{counter-increment:s;position:relative;padding-left:44px;margin:14px 0}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--brand);font-weight:700;display:flex;align-items:center;justify-content:center}
+table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+.muted{color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);margin-top:56px;padding-top:16px;padding-bottom:32px;font-size:14px;color:var(--muted)}
+footer a{color:var(--muted)}
+img.hero{width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+</style>
+</head><body>
+<header><img src="logo.png" alt=""><a class="name" href="./">Scope Change Orders</a>
+<nav><a href="scope-creep-jira.html">Scope creep</a><a href="change-order-jira.html">Change orders</a><a href="support.html">Support</a></nav></header>
+<main>
+
+<h1>How to manage change orders in Jira</h1>
+<p class="lead">A change order is a written, approved change to the scope, price or timeline of a project.
+Here is what a good one contains and how to run the process in Jira.</p>
+
+<h2>What a change order should contain</h2>
+<table>
+<tr><th>Field</th><th>Why it matters</th></tr>
+<tr><td>What changes</td><td>A short description the client understands, not a ticket key.</td></tr>
+<tr><td>Why</td><td>The client request or discovery that triggered it.</td></tr>
+<tr><td>Budget impact</td><td>The amount and currency the client agrees to pay.</td></tr>
+<tr><td>Timeline impact</td><td>How many days the delivery date moves, if any.</td></tr>
+<tr><td>Affected work</td><td>The Jira issues concerned, so delivery can trace it.</td></tr>
+<tr><td>Internal approval</td><td>Who on your side agreed, and when.</td></tr>
+<tr><td>Client approval</td><td>Who signed on the client side, when, and any note.</td></tr>
+</table>
+
+<h2>The process, step by step</h2>
+<ol class="steps">
+<li><strong>Detect.</strong> Someone on the team spots a request that is not in the agreed scope.</li>
+<li><strong>Draft.</strong> Write the change order from the Jira issue, with cost and timeline impact.</li>
+<li><strong>Approve internally.</strong> The project lead checks the price and capacity.</li>
+<li><strong>Send to the client.</strong> The client approves or rejects, with a reason.</li>
+<li><strong>Record and invoice.</strong> Keep the signed document and add it to the next invoice.</li>
+</ol>
+
+<h2>Doing it in Jira</h2>
+<p>With Jira alone, you can model change orders as their own issue type with custom fields and an
+approval workflow. The limits are the client step (clients rarely have Jira accounts) and the
+document (Jira does not produce a client-ready change order).</p>
+<p><strong>Scope Change Orders</strong> adds the missing parts to Jira Cloud:</p>
+<ul>
+<li>a change request created from any issue, with budget and timeline impact;</li>
+<li>internal approval limited to project admins by default;</li>
+<li>a client approval link that needs no Atlassian account and expires after 7 days;</li>
+<li>a printable change order with the full approval trail, where every timestamp names its timezone;</li>
+<li>a dashboard of recovered, pending and absorbed revenue.</li>
+</ul>
+<div class="cta"><strong>Scope Change Orders for Jira Cloud</strong> is coming to the Atlassian Marketplace, free during beta.<br><a class="btn" href="mailto:team@finalmark.io?subject=Scope%20Change%20Orders%20beta">Ask for early access</a></div>
+<p class="muted">The app records and formats commercial decisions. Whether an approval amends your contract
+depends on your agreement with your client and on applicable law.</p>
+<p>Related: <a href="scope-creep-jira.html">How to stop scope creep in Jira</a> ·
+<a href="client-approval-jira.html">Client approval without an Atlassian account</a></p>
+
+</main>
+<footer>Scope Change Orders is published by FinalMark, Switzerland · <a href="mailto:team@finalmark.io">team@finalmark.io</a><br>
+<a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a> · <a href="security.html">Security</a><br>
+Jira and Atlassian are trademarks of Atlassian. This app is not made or endorsed by Atlassian.</footer>
+</body></html>
